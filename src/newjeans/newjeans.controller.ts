@@ -8,27 +8,25 @@ export class NewjeansController {
   constructor(private readonly newjeansService: NewjeansService) {}
 
   @Post()
-  create(@Body() createNewjeanDto: CreateNewjeanDto) {
-    return this.newjeansService.create(createNewjeanDto);
+
+  async createProduct(@Body() product : CreateNewjeanDto ) {
+    return this.newjeansService.createProduct(product)
   }
 
-  @Get()
-  findAll() {
-    return this.newjeansService.findAll();
-  }
+  @Get("all")
+  async getProducts()   {return this.newjeansService.getProducts()}
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.newjeansService.findOne(+id);
-  }
+
+  async getProductById(@Param("id") id:string)  {return this.newjeansService.getProductById(id)}
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNewjeanDto: UpdateNewjeanDto) {
-    return this.newjeansService.update(+id, updateNewjeanDto);
-  }
+  async updateProductId(@Param("id") id:string, @Body() product : CreateNewjeanDto) {return this.newjeansService.updateProductId(id, product)}
+
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.newjeansService.remove(+id);
-  }
+
+  async deleteProductId(@Param("id") id:string) {return this.newjeansService.deleteProductId(id)}
+
+
 }
